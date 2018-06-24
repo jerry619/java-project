@@ -1,6 +1,6 @@
 <?xml version = "1.0"?>
 <project name = "Rectangle project" default = "main" basedir = ".">
-	<property environment = "env">
+	<property environment = "env"/>
 	<property name = "build.dir" value = "bin"/>
 	<property name = "src.dir" value = "src"/>
 	<property name = "dist.dir" value = "dist"/>
@@ -21,12 +21,12 @@
                 <mkdir dir = "${dist.dir}"/>
 	</target>
 	<target name = "compile" depends = "clean, mkdir">
-		<javac srcdir = "$src.dir" destdir = "$build.dir">
+		<javac srcdir = "${src.dir}" destdir = "${build.dir}">
 			<classpath refid = "class.path"/>
 		</javac>
 	</target>
 	<target name = "jar" depends = "compile">
-		<jar destdir = "${dist.dir}/rectangle.jar" basedir="${build.dir}">
+		<jar destfile = "${dist.dir}/rectangle.jar" basedir="${build.dir}">
 			<manifest>
 				<attribute name = "Main-class" value = "Rectangular"/>
 			</manifest>
