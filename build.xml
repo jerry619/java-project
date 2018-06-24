@@ -1,0 +1,38 @@
+<?xml version = "1.0"?>
+<project name = "Rectangle project" default = "main" basedir = ".">
+	<property environment = "env">
+	<property name = "build.dir" value = "bin"/>
+	<property name = "src.dir" value = "src"/>
+	<property name = "dist.dir" value = "dist"/>
+	<property name = "docs.dir" value = "docs"/>
+
+	<path id = "class.path">
+		<pathelement location = "./bin"/>
+	</path>
+	
+	<target name = "clean">
+		<delete dir = "${build.dir}"/>
+		<delete dir = "${docs.dir}"/>
+		<delete dir = "${dist.dir}"/>
+	</target>
+	<target name = "mkdir">
+		<mkdir dir = "${build.dir}"/>
+		<mkdir dir = "${docs.dir}"/>
+                <mkdir dir = "${dist.dir}"/>
+	</target>
+	<target name = "compile" depends = "clean, mkdir">
+		<javac srcdir = "$src.dir" destdir = "$build.dir">
+			<classpath refid = "class.path"/>
+		</javac>
+	</target>
+	<target name = "jar" depends = "compile">
+		<jar destdir = "${dist.dir}/rectangle.jar" basedir="${build.dir}">
+			<manifest>
+				<attribute name = "Main-class" value = "Rectangular"/>
+			</manifest>
+		</jar>
+	</target>
+	<target name = "main" depends = "jar">
+		<description>Main target</description>
+	</target>
+</project>
