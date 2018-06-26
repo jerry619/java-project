@@ -1,1 +1,1 @@
-a-project for Jenkins
+Java-project for Jenkins
