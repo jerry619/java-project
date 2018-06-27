@@ -6,7 +6,7 @@ public class RectangleTest {
 
 	@Test
 	public void testArea() {
-		assertEquals(myrectangle.Area(), 20);
+		assertEquals(myrectangle.Area(), 24);
 	}
 	
 	@Test
