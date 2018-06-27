@@ -16,11 +16,11 @@ public class RectangleTest {
 	
 	@Test
 	public void Testlength() {
-		assertEquals(myrectangle.length, 4)
+		assertEquals(myrectangle.length, 4);
 	}
 
 	@Test
 	public void Testwidth() {
-		assertEquals(myrectangle.width, 6)
+		assertEquals(myrectangle.width, 6);
 	}
 }
