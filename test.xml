@@ -19,7 +19,7 @@
 	</target>
 	<target name = "compile" depends = "mkdir">
 		<javac srcdir = "${src.dir}" destdir = "${build.dir}">
-			<classpath refide = "class.path"/>
+			<classpath refid = "class.path"/>
 		</javac>
 	</target>
 	<target name = "test" depends = "compile">
