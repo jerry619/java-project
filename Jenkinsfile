@@ -57,6 +57,7 @@ pipeline {
 			}
 		}
 		stage('Promote to green') {
+			agent { label 'Master' }
 			steps {
 				sh 'cp /var/www/html/rectangles/all/rectangle_${BUILD_NUMBER}.jar /var/www/html/rectangles/green/rectangle_${BUILD_NUMBER}.jar'
 			}
