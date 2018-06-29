@@ -45,7 +45,10 @@ pipeline {
 		}
 		stage('Running it in Docker Container') {
 			agent {
-				label 'Linux:', docker 'openjdk:8u171-jre'
+				docker {
+					image 'openjdk:8u171-jre'
+					label 'Linux:'
+				}
 			}
 			steps {
 				sh 'wget http://jerry-john3.mylabserver.com/rectangles/all/rectangle_${BUILD_NUMBER}.jar'
