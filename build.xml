@@ -27,7 +27,7 @@
 		</javac>
 	</target>
 	<target name = "jar" depends = "compile">
-		<jar destfile = "${dist.dir}/rectangle_${BUILD_NUMBER}.jar" basedir="${build.dir}">
+		<jar destfile = "${dist.dir}/rectangle_${env.BUILD_NUMBER}.jar" basedir="${build.dir}">
 			<manifest>
 				<attribute name = "Main-class" value = "Rectangular"/>
 			</manifest>
