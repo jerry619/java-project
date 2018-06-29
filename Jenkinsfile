@@ -51,7 +51,7 @@ pipeline {
 				}
 			}
 			steps {
-				sh 'echo ${HOSTNAME}'
+				sh 'echo ${NODE_NAME}'
 				sh 'wget http://jerry-john3.mylabserver.com/rectangles/all/rectangle_${BUILD_NUMBER}.jar'
 				sh 'java -jar rectangle_${BUILD_NUMBER}.jar 8 4'
 			}
