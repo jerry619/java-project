@@ -31,7 +31,7 @@ pipeline {
 				label 'Master'
 			}
 			steps {
-				if [ !-d '/var/www/html/rectangles/all/${BRANCH_NAME}' ]
+				if !( -d '/var/www/html/rectangles/all/${BRANCH_NAME}' )
 				then
 					sh 'mkdir /var/www/html/rectangles/all/${BRANCH_NAME}'
 				fi
