@@ -1,1 +1,1 @@
-***Java-project for Jenkins CD****
+***Java-project for Jenkins CD pipeline****
