@@ -31,7 +31,11 @@ pipeline {
 				label 'Master'
 			}
 			steps {
-				sh 'cp dist/rectangle_${BUILD_NUMBER}.jar /var/www/html/rectangles/all/'
+				if [ !-d /var/www/html/rectangles/all/${BRANCH_NAME} ]
+				then
+					sh 'mkdir /var/www/html/rectangles/all/${BRANCH_NAME}'
+				fi
+				sh 'cp dist/rectangle_${BUILD_NUMBER}.jar /var/www/html/rectangles/all/${BRANCH_NAME}'
 			}
 		}
 		stage('Running on Centos') {
@@ -39,7 +43,7 @@ pipeline {
 				label 'Linux:'
 			}
 			steps {
-				sh 'wget http://jerry-john3.mylabserver.com/rectangles/all/rectangle_${BUILD_NUMBER}.jar'
+				sh 'wget http://jerry-john3.mylabserver.com/rectangles/all/${BRANCH_NAME}/rectangle_${BUILD_NUMBER}.jar'
 				sh 'java -jar rectangle_${BUILD_NUMBER}.jar 7 8'
 			}
 		}
@@ -52,18 +56,24 @@ pipeline {
 			}
 			steps {
 				sh 'echo ${NODE_NAME}'
-				sh 'wget http://jerry-john3.mylabserver.com/rectangles/all/rectangle_${BUILD_NUMBER}.jar'
+				sh 'wget http://jerry-john3.mylabserver.com/rectangles/all/${BRANCH_NAME}/rectangle_${BUILD_NUMBER}.jar'
 				sh 'java -jar rectangle_${BUILD_NUMBER}.jar 8 4'
 			}
 		}
-		stage('Promote to green') {
-			agent { label 'Master' }
-			when {
-				branch 'development'
-			}
+		stage('Merge the code to Master from development') {
 			steps {
-				sh 'cp /var/www/html/rectangles/all/rectangle_${BUILD_NUMBER}.jar /var/www/html/rectangles/green/rectangle_${BUILD_NUMBER}.jar'
+				sh 'echo stashing any local changes'
+				sh 'git stash'
+				sh 'git checkout master'
+				sh 'git merge development'
+				sh 'git push origin master'
 			}
+			 post {
+                                success {
+                                        cp /var/www/html/rectangles/all/${BRANCH_NAME}/rectangle_${BUILD_NUMBER}.jar /var/www/html/rectangles/green/rectangle_${BUILD_NUMBER}.jar
+                                 }
+                        }
 		}
+				
 	}	
 }
