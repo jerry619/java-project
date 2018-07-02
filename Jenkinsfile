@@ -76,11 +76,5 @@ pipeline {
 				}
                        }
                 }
-<<<<<<< HEAD
 	}			
 }
-=======
-	}		
-}	
-
->>>>>>> parent of af3f208... Jenkinsfile change checking nodename of docker run
