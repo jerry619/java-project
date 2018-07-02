@@ -65,10 +65,12 @@ pipeline {
 				sh 'echo stashing any local changes'
 				sh 'git stash'
 				sh 'git checkout development'
+				sh 'git pull'
 				sh 'git checkout master'
+				sh 'git pull'
 				sh 'git merge development'
 				sh 'git describe --abbrev=0 --tags'
-				sh 'git pull origin master'
+				sh 'git push origin master'
 			}
 			post {
                         	success {
