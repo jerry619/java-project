@@ -36,7 +36,7 @@ pipeline {
 					if ( ! direc.exists() ) {
 			        		direc.mkdirs()
 					}
-					cp dist/rectangle_${BUILD_NUMBER}.jar /var/www/html/rectangles/all/${BRANCH_NAME}/
+					cp dist/rectangle_${BUILD_NUMBER}.jar direc/
 				}
 			}
 		}
