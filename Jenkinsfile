@@ -69,7 +69,7 @@ pipeline {
 				sh 'git merge development'
 				b = sh (script: "git describe --abbrev=0 --tags | cut -d'-' -f2",returnStdout: true)
 				echo $b
-				git tag -a Rel-$b
+				#git tag -a Rel-$b
 				sh 'git push origin master'
 			}
 			post {
