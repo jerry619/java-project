@@ -31,7 +31,7 @@ pipeline {
 				label 'Master'
 			}
 			steps {	
-				sh 'mkdir /var/www/html/rectangles/all/${BRANCH_NAME}'
+				sh 'if [ ! -d '/var/www/html/rectangles/all/${BRANCH_NAME}' ]; then mkdir /var/www/html/rectangles/all/${BRANCH_NAME}; fi'
 				sh 'cp dist/rectangle_${BUILD_NUMBER}.jar  /var/www/html/rectangles/all/${BRANCH_NAME}/'
 			}
 		}
@@ -58,6 +58,9 @@ pipeline {
 			}
 		}
 		stage('Merge the code to Master from development') {
+			agent {
+				label 'Master'
+			}
 			steps {
 				sh 'echo stashing any local changes'
 				sh 'git stash'
@@ -67,7 +70,7 @@ pipeline {
 			}
 			post {
                         	success {
-                                	sh 'cp /var/www/html/rectangles/all/${BRANCH_NAME}/rectangle_${BUILD_NUMBER}.jar /var/www/html/rectangles/green/'
+                                	cp /var/www/html/rectangles/all/${BRANCH_NAME}/rectangle_${BUILD_NUMBER}.jar /var/www/html/rectangles/green/
 					}
                                 }
                     	}
