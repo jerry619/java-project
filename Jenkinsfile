@@ -71,8 +71,8 @@ pipeline {
 			post {
                         	success {
                                 	cp /var/www/html/rectangles/all/${BRANCH_NAME}/rectangle_${BUILD_NUMBER}.jar /var/www/html/rectangles/green/
-					}
+				}
                        }
                 }
 	}			
-
+}
