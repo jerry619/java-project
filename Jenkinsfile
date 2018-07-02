@@ -36,8 +36,8 @@ pipeline {
 					if ( ! direc.exists() ) {
 			        		direc.mkdirs()
 					}
+					cp dist/rectangle_${BUILD_NUMBER}.jar /var/www/html/rectangles/all/${BRANCH_NAME}/
 				}
-				sh 'cp dist/rectangle_${BUILD_NUMBER}.jar /var/www/html/rectangles/all/${BRANCH_NAME}/'
 			}
 		}
 		stage('Running on Centos') {
@@ -72,7 +72,7 @@ pipeline {
 			}
 			 post {
                                 success {
-                                        cp /var/www/html/rectangles/all/${BRANCH_NAME}/rectangle_${BUILD_NUMBER}.jar /var/www/html/rectangles/green/rectangle_${BUILD_NUMBER}.jar
+                                        cp /var/www/html/rectangles/all/${BRANCH_NAME}/rectangle_${BUILD_NUMBER}.jar /var/www/html/rectangles/green/
                                  }
                         }
 		}
