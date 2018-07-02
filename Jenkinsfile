@@ -31,8 +31,9 @@ pipeline {
 				label 'Master'
 			}
 			steps {
-				if ( ! '/var/www/html/rectangles/all/${BRANCH_NAME}'.exists() ) {
-			        	'/var/www/html/rectangles/all/${BRANCH_NAME}'.mkdirs()
+				def direc = new File( '/var/www/html/rectangles/all/${BRANCH_NAME}' )
+				if ( ! direc.exists() ) {
+			        	direc.mkdirs()
 				}
 				sh 'cp dist/rectangle_${BUILD_NUMBER}.jar /var/www/html/rectangles/all/${BRANCH_NAME}/'
 			}
