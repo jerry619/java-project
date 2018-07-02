@@ -67,8 +67,8 @@ pipeline {
 				sh 'git checkout development'
 				sh 'git checkout master'
 				sh 'git merge development'
-				def b = sh (script: "git describe --abbrev=0 --tags | cut -d'-' -f2",returnStdout: true)
-				sh 'echo $b'
+				sh (script: "git describe --abbrev=0 --tags | cut -d'-' -f2" > rel.txt)
+				sh 'cat $rel.txt'
 				sh 'git push origin master'
 			}
 			post {
