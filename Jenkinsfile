@@ -68,7 +68,7 @@ pipeline {
 				sh 'echo stashing any local changes'
 				sh 'git stash'
 				sh 'git checkout development'
-				sh 'git pull --rebase'
+				sh 'if [ $(git fetch) -eq 0 ]; then currentBuild.result = 'SUCCESS'; fi'
 				sh 'git checkout master'
 				sh 'git pull --rebase'
 				sh 'git merge development'
