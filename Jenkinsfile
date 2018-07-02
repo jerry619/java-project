@@ -62,7 +62,7 @@ pipeline {
 				label 'Master'
 			}
 			when {
-				branch = 'development'
+				branch 'development'
 			}
 			steps {
 				sh 'echo stashing any local changes'
