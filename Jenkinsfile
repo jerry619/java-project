@@ -64,6 +64,7 @@ pipeline {
 			steps {
 				sh 'echo stashing any local changes'
 				sh 'git stash'
+				sh 'git checkout development'
 				sh 'git checkout master'
 				sh 'git merge development'
 				sh 'git push origin master'
