@@ -68,7 +68,7 @@ pipeline {
 				sh 'git checkout master'
 				sh 'git merge development'
 				sh 'git describe --abbrev=0 --tags'
-				sh 'git push origin master'
+				sh 'git pull origin master'
 			}
 			post {
                         	success {
