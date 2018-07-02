@@ -31,7 +31,9 @@ pipeline {
 				label 'Master'
 			}
 			steps {
-				script { if ( ! -d '/var/www/html/rectangles/all/${BRANCH_NAME}' ) {  sh 'mkdir -p /var/www/html/rectangles/all/${BRANCH_NAME}' }}
+				if ( ! '/var/www/html/rectangles/all/${BRANCH_NAME}'.exists() ){
+			        	sh 'mkdir /var/www/html/rectangles/all/${BRANCH_NAME}'
+				}
 				sh 'cp dist/rectangle_${BUILD_NUMBER}.jar /var/www/html/rectangles/all/${BRANCH_NAME}/'
 			}
 		}
