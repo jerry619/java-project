@@ -36,7 +36,7 @@ pipeline {
 					if ( ! direc.exists() ) {
 			        		direc.mkdirs()
 					}
-					cp dist/rectangle_${BUILD_NUMBER}.jar $direc/.
+					Files.copy( dist/rectangle_${BUILD_NUMBER}.jar, direc/rectangle_${BUILD_NUMBER}.jar )
 				}
 			}
 		}
