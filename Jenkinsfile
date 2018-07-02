@@ -32,7 +32,7 @@ pipeline {
 			}
 			steps {
 				if ( ! '/var/www/html/rectangles/all/${BRANCH_NAME}'.exists() ) {
-			        	sh 'mkdir /var/www/html/rectangles/all/${BRANCH_NAME}'
+			        	'/var/www/html/rectangles/all/${BRANCH_NAME}'.mkdirs()
 				}
 				sh 'cp dist/rectangle_${BUILD_NUMBER}.jar /var/www/html/rectangles/all/${BRANCH_NAME}/'
 			}
