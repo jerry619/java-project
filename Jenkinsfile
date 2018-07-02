@@ -70,7 +70,6 @@ pipeline {
 				sh 'git checkout development'
 				sh "if [ git fetch -eq 0 ]; then currentBuild.result = 'SUCCESS'; fi"
 				sh 'git checkout master'
-				sh 'git pull --rebase'
 				sh 'git merge development'
 				sh 'git describe --abbrev=0 --tags'
 				sh 'git push origin master'
