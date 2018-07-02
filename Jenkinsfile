@@ -68,9 +68,8 @@ pipeline {
 				sh 'git checkout master'
 				sh 'git merge development'
 				script {
-					tag=`git describe --abbrev=0 --tags`
-					b=`echo $tag|awk -F"-" '{print $2}'`
-					b=`expr $b + 1`
+					def b = sh returnStdout: true, script: 'git describe --abbrev=0 --tags|awk -F"-" '{print $2}''
+					b=expr $b + 1
 					git tag -a Rel-$b
 				}
 				sh 'git push origin master'
