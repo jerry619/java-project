@@ -31,13 +31,8 @@ pipeline {
 				label 'Master'
 			}
 			steps {	
-				script {
-					def direc = new File( '/var/www/html/rectangles/all/${BRANCH_NAME}' )
-					if ( ! direc.exists() ) {
-			        		direc.mkdirs()
-					}
-					Files.copy( dist/rectangle_${BUILD_NUMBER}.jar, direc/rectangle_${BUILD_NUMBER}.jar )
-				}
+				sh 'mkdir /var/www/html/rectangles/all/${BRANCH_NAME}'
+				sh 'cp dist/rectangle_${BUILD_NUMBER}.jar  /var/www/html/rectangles/all/${BRANCH_NAME}/'
 			}
 		}
 		stage('Running on Centos') {
