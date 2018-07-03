@@ -4,6 +4,12 @@ pipeline {
 		buildDiscarder(logRotator(numToKeepStr: '2', artifactNumToKeepStr: '1'))
 	}
 	stages {
+		stage('Say Hello') {
+			agent any
+			steps {
+				sayHello 'Awesome student'
+			}
+		}
 		stage('Unit test') {
 			agent {
        			         label 'Linux:'
