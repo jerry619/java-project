@@ -4,6 +4,12 @@ pipeline {
 		buildDiscarder(logRotator(numToKeepStr: '2', artifactNumToKeepStr: '1'))
 	}
 	stages {
+		stage('Say Hello') {
+			agent any
+			steps {
+				sayHello 'Awesome student'
+			}
+		}
 		stage('Unit test') {
 			agent {
        			         label 'Linux:'
@@ -68,8 +74,13 @@ pipeline {
 				sh 'echo stashing any local changes'
 				sh 'git stash'
 				sh 'git checkout development'
+				sh 'git stash'
+				sh "if [ `git fetch` -eq null ]; then currentBuild.result == 'SUCCESS'; fi"
 				sh 'git checkout master'
-				sh 'git merge development'
+				sh 'git merge --no-commit --no-ff development'
+				sh 'git reset HEAD -- Jenkinsfile'
+				sh 'git checkout -- Jenkinsfile'
+				sh 'git commit -m "merged by ${BUILD_NUMBER} of ${JOB_NAME}"'
 				sh 'git describe --abbrev=0 --tags'
 				sh 'git push origin master'
 			}
