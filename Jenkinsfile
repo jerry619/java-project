@@ -77,7 +77,10 @@ pipeline {
 				sh 'git stash'
 				sh "if [ `git fetch` -eq null ]; then currentBuild.result == 'SUCCESS'; fi"
 				sh 'git checkout master'
-				sh 'git merge development'
+				sh 'git merge --no-commit --no-ff development'
+				sh 'git reset HEAD -- Jenkinsfile'
+				sh 'git clean -fd'
+				sh 'git commit -m "merged by ${BUILD_NUMBER} of ${JOB_NAME}"
 				sh 'git describe --abbrev=0 --tags'
 				sh 'git push origin master'
 			}
