@@ -2,4 +2,3 @@ bin/*
 dist/*
 docs/*
 reports/*
-Jenkinsfile
