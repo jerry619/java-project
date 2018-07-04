@@ -83,7 +83,7 @@ pipeline {
 				sh 'git commit -m "merged by ${BUILD_NUMBER} of ${JOB_NAME}"'
 				sh 'git describe --abbrev=0 --tags'
 				sh 'git push origin master'
-		
+				}
 			post {
                         	success {
                                 	sh "cp /var/www/html/rectangles/all/${BRANCH_NAME}/rectangle_${BUILD_NUMBER}.jar /var/www/html/rectangles/green/"
