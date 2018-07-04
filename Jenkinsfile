@@ -75,7 +75,7 @@ pipeline {
 				sh 'git stash'
 				sh 'git checkout development'
 				sh 'git stash'
-				sh "if [ -z `git fetch` ]; then currentBuild.result == 'SUCCESS'; fi"
+				sh "if [ `git fetch` -eq null ]; then currentBuild.result == 'SUCCESS'; fi"
 				sh 'git checkout master'
 				sh 'git merge development'
 				sh 'git describe --abbrev=0 --tags'
